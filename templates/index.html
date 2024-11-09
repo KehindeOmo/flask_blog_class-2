@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Stock Data Visualizer {% endblock %}</h1>
+    <form method="post" action="{{ url_for('stockData')}}">
+        <label> Enter Stock SYmbol here: </label>
+        <select name="symbol" required>
+            {% for symbol in stockSymb %}
+                <option value="{{ symbol }}">{{ symbol }}</option>
+            {% endfor %}
+        </select>
+
+        <label> Select Time Series:  </label>
+        <select name="timeSeries" required>
+            <option value="TIME_SERIES_DAILY">DAILY</option>
+            <option value="TIME_SERIES_WEEKLY">WEEKLY</option>
+            <option value="TIME_SERIES_MONTHLY">MONTHLY</option>
+        </select>
+
+        <label> Graph Type:  </label>
+        <select name="chartType" required>
+            <option value="1">Bar Graph</option>
+            <option value="2">Line Graph</option>
+        </select>
+
+        <label>Start Date:</label>
+        <input type="date" name="start_date" required>
+
+        <label>End Date:</label>
+        <input type="date" name="end_date" required>
+
+        <button type="submit"> Get Stock Data </button>
+        
+    </form>
+    
+   
+{% endblock %}
